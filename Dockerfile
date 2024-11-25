@@ -25,7 +25,7 @@ RUN apt-get update && apt-get install -y \
     bash
 
 # Clone the OpenEFT repository
-RUN git clone https://github.com/robbbbbbbbb/OpenEFT.git /root/OpenEFT && \
+RUN git clone https://github.com/dwyerwilliam/OpenEFT.git /root/OpenEFT && \
     cd /root/OpenEFT && git pull
 
 # Set working directory to the cloned repo
@@ -34,7 +34,7 @@ WORKDIR /root/OpenEFT
 # Clone and set up NBIS in the repo directory
 RUN mkdir /root/build && \
     echo "Setting Up NBIS" && \
-    git clone https://github.com/Robbbbbbbbb/nbis /root/OpenEFT/nbis && \
+    git clone https://github.com/dwyerwilliam/nbis /root/OpenEFT/nbis && \
     cd /root/OpenEFT/nbis && \
     ./setup.sh /root/build --64 && \
     echo "Configuring NBIS" && \
