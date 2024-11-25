@@ -111,9 +111,18 @@ class Fingerprint:
         self.ppi = round((x+y)/2) 
 
     def extract_fp(self, bbox):
-        (x,y,w,h) = bbox
-        self.img = self.src[y:y+h, x:x+w]
-#        self.img = cv2.resize(self.img, (1000,1000), interpolation=cv2.INTER_LINEAR_EXACT)
+        (x, y, w, h) = bbox  # Bounding box coordinates and dimensions
+        self.img = self.src[y:y + h, x:x + w]  # Crop the image using the bounding box
+
+        # Scale the cropped image down by 25%, maintaining the aspect ratio
+        scale_factor = 0.5  # 50% smaller
+        new_width = int(w * scale_factor)
+        new_height = int(h * scale_factor)
+
+        # Resize the image with the calculated dimensions
+        self.img = cv2.resize(self.img, (new_width, new_height), interpolation=cv2.INTER_LINEAR)
+
+        # Save the resized image
         self.save_image()
 
     def segment(self):
